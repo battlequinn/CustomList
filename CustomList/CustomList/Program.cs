@@ -10,8 +10,6 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            Run run = new Run();
-            Console.ReadKey();
         }
     }
 }

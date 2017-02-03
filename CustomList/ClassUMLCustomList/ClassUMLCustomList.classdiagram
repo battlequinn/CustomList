@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="56853365-cc16-427c-aaf1-067cc6e6b8cd" name="ClassUMLCustomList" linkedPackageId="756e35cd-d2f4-4fec-ae37-3cfbbaf48488" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="d2f80822-0439-46c1-8354-fac672f6b7f2">
+      <profileInstance Id="689b7832-7d86-420f-91b5-28a3528755e0" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="86bf705f-43c9-4945-b185-8320bc37c312">
+      <profileInstance Id="cf73d68e-d3db-48e4-ab6a-9219fc9eb87b" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9091a85b-fe89-4625-8d20-a5ee82d25e97" name="CustomList" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bf4a0087-a2b6-464b-aea1-9cfa249a61b7" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="67f89ab8-89e0-499b-8edb-94a2cdb9bac5" name="Run" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="25266bce-be57-42b4-9218-665acf88080c" />
+        <targetEnds>
+          <association Id="3941d820-2e59-479a-9007-7cb12d86f5f9" isDerived="false" sourceEndRoleName="Run" targetEndRoleName="CustomList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9091a85b-fe89-4625-8d20-a5ee82d25e97" LastKnownName="CustomList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="49fc55e9-46a2-4b74-b029-05a3bec3cf95" name="Run" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="862d84dd-0990-43ee-b5a4-ca95cfddacf7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="13b02874-7eb3-4c7a-99b7-61289b6c2482" name="CustomList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="bb60c517-7f0b-459e-a15f-f09cb96ca8d9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="94780a47-5ed8-44f6-b1c8-f749cf80fa70" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="343dc320-06fa-452c-90ea-23d2a6080bfb" name="TestCustomList" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4e55f999-ed87-40f6-b5af-8335fc74d4e4" />
+        <targetEnds>
+          <association Id="7a9283fc-ca4a-460f-ae49-9fef0642b088" isDerived="false" sourceEndRoleName="TestCustomList" targetEndRoleName="CustomList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9091a85b-fe89-4625-8d20-a5ee82d25e97" LastKnownName="CustomList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8d687760-4318-4beb-bfbd-487e4d7ba87e" name="TestCustomList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ae284fe6-a663-476f-80f6-d80073d3b3fb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="20576c0a-8b10-4613-9e59-1405800df29a" name="CustomList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8f934091-e924-4928-baaf-078658500e9b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="77f05f72-02c3-4a0d-a401-443f0a6f967f" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="756e35cd-d2f4-4fec-ae37-3cfbbaf48488" name="ClassUMLCustomList">
+    <elementDefinition Id="9af93450-93eb-48b2-bbe7-d645be156094" />
+  </package>
+</logicalClassDesignerModel>
