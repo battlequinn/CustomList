@@ -42,7 +42,7 @@ namespace TestCustomList
             list.Add(inputOne);
             list.Add(inputTwo);
             list.Add(inputThree);
-            int result = list.size;
+            int result = list.Count;
             //Assert
             Assert.AreEqual(3, result);
         }
@@ -78,35 +78,41 @@ namespace TestCustomList
         public void Test_Remove_IntOfListSizeThree_Length()
         {
             //Arrange
-            CustomList<int> list = new CustomList<int>() { 5, 7, -3};
+            CustomList<int> list = new CustomList<int>(3) { 5, 7, -3 };
             //Act
             list.Remove(5);
             //Assert
             Assert.AreEqual(list.items.Length, 2);
         }
         [TestMethod]
-        public void Test_Remove_stringOfListSizeFour_Value()
+        public void Test_Remove_StringOfListSizeFour_Value()
         {
             //Arrange
-            string inputOne = "blue";
-            string inputTwo = "red";
-            string inputThree = "yellow";
-            string inputFour = "green";
-            CustomList<string> list = new CustomList<string>() {inputOne, inputTwo, inputThree, inputFour};
+            CustomList<string> list = new CustomList<string>(4) { "blue", "red", "yellow", "green" };
             //Act
-            list.Remove(inputTwo);
+            list.Remove("red");
             //Assert
-            Assert.AreEqual(list.items[1], inputThree);
+            Assert.AreEqual(list.items[1], "yellow");
+        }
+        [TestMethod]
+        public void Test_Remove_StringNoExist()
+        {
+            //Arrange
+            CustomList<string> list = new CustomList<string>(4) { "blue", "red", "yellow", "green" };
+            //Act
+            list.Remove("black");
+            //Assert
+            Assert.AreEqual(list.items[3], "green");
         }
         [TestMethod]
         public void Test_MakeIterable()
         {
             //Arrange
-            CustomList<string> paper = new CustomList<string>() { "black", "white" };
+            CustomList<string> paper = new CustomList<string>(2) { "black", "white" };
             string paperColors = "";
             string expected = "black white ";
             //Act
-            foreach(string color in paper)
+            foreach (string color in paper)
             {
                 paperColors += (color + " ");
             }
@@ -117,7 +123,7 @@ namespace TestCustomList
         public void Test_ToString_Int()
         {
             //Arrange
-            CustomList<int> number = new CustomList<int>() {1, 2, 3 };
+            CustomList<int> number = new CustomList<int>(3) { 1, 2, 3 };
             string result;
             //Act
             result = number.ToString();
@@ -128,7 +134,7 @@ namespace TestCustomList
         public void Test_ToString_String()
         {
             //Arrange
-            CustomList<string> number = new CustomList<string>() { "beep", "boop", "bop" };
+            CustomList<string> number = new CustomList<string>(3) { "beep", "boop", "bop" };
             string result;
             //Act
             result = number.ToString();
@@ -139,12 +145,112 @@ namespace TestCustomList
         public void Test_ToString_Boolean()
         {
             //Arrange
-            CustomList<bool> number = new CustomList<bool>() { true, false };
+            CustomList<bool> number = new CustomList<bool>(2) { true, false };
             string result;
             //Act
             result = number.ToString();
             //Assert
             Assert.AreEqual("True, False", result);
+        }
+        [TestMethod]
+        public void Test_PlusOperator_Int()
+        {
+            //Arrange
+            CustomList<int> listOne = new CustomList<int>(2) { 1, 2 };
+            CustomList<int> listTwo = new CustomList<int>(2) { 3, 4 };
+            string expected = "1, 2, 3, 4";
+            //Act
+            CustomList<int> actualList = listOne + listTwo;
+            string actual = actualList.ToString();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_PlusOperator_String()
+        {
+            //Arrange
+            CustomList<string> listOne = new CustomList<string>(2) { "hi", "hello" };
+            CustomList<string> listTwo = new CustomList<string>(2) { "bye", "goodbye" };
+            string expected = "hi, hello, bye, goodbye";
+            //Act
+            CustomList<string> actualList = listOne + listTwo;
+            string actual = actualList.ToString();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_SubtractOperator_Int()
+        {
+            //Arrange
+            CustomList<int> listOne = new CustomList<int>(4) { 1, 2, 3, 4 };
+            CustomList<int> listTwo = new CustomList<int>(2) { 3, 4 };
+            string expected = "1, 2";
+            //Act
+            CustomList<int> actualList = listOne - listTwo;
+            string actual = actualList.ToString();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_SubtractOperator_IntListTwoMinusLIstOne()
+        {
+            //Arrange
+            CustomList<int> listOne = new CustomList<int>(4) { 1, 2, 3, 4 };
+            CustomList<int> listTwo = new CustomList<int>(2) { 3, 4 };
+            string expected = "";
+            //Act
+            CustomList<int> actualList = listTwo - listOne;
+            string actual = actualList.ToString();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_SubtractOperator_String()
+        {
+            //Arrange
+            CustomList<string> listOne = new CustomList<string>(4) { "hi", "hello", "bye", "goodbye" };
+            CustomList<string> listTwo = new CustomList<string>(2) { "hi", "hello" };
+            string expected = "bye, goodbye";
+            //Act
+            CustomList<string> actualList = listOne - listTwo;
+            string actual = actualList.ToString();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_Count()
+        {
+            //Arrange
+            CustomList<string> list = new CustomList<string>(4) { "hi", "hello", "bye", "goodbye" };
+            //Act
+            //Assert
+            Assert.AreEqual(4, list.Count);
+        }
+        [TestMethod]
+        public void Test_Zip_IntoNewList()
+        {
+            //Arrange
+            CustomList<string> numbers = new CustomList<string>(3) { "1", "2", "3" };
+            CustomList<string> words = new CustomList<string>(4) { "one", "two", "three", "four" };
+            string expected = "1, one, 2, two, 3, three";
+            //Act
+            CustomList<string> numbersAndWords = numbers.Zip(words);
+            string result = numbersAndWords.ToString();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void Test_Zip_OverwriteOldList()
+        {
+            //Arrange
+            CustomList<string> numbers = new CustomList<string>(3) { "1", "2", "3" };
+            CustomList<string> words = new CustomList<string>(4) { "one", "two", "three", "four" };
+            string expected = "1, one, 2, two, 3, three";
+            //Act
+            numbers = numbers.Zip(words);
+            string result = numbers.ToString();
+            //Assert
+            Assert.AreEqual(expected, result);
         }
     }
 }

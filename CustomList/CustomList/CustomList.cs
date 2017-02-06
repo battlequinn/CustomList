@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 namespace CustomList
 {
     public class CustomList<T> : IEnumerable
-    
     {
-        public T[] items;
-        public int size;
-        private T[] openArray = new T[0];
+        public T[] items = new T[0];
+        private int size = 0;
+
+        public int Count { get { return size; } }
 
         public CustomList()
         {
-            items = openArray;
-            size = 0;
         }
         public CustomList(int size)
         {
@@ -27,7 +25,7 @@ namespace CustomList
             }
             else
             {
-                items = openArray;
+                size = items.Length;
             }
         }
         public IEnumerator GetEnumerator()
@@ -37,7 +35,7 @@ namespace CustomList
                 yield return items[i];
             }
         }
-        public string ToString()
+        public override string ToString()
         {
             string convertedItem = "";
             for (int i = 0; i < size; i++)
@@ -68,8 +66,15 @@ namespace CustomList
         }
         public void Remove(T item)
         {
-
-            if (item != null)
+            bool exists = false;
+            for(int i = 0; i < size; i++)
+            {
+                if(EqualityComparer<T>.Default.Equals(items[i], item))
+                {
+                    exists = true;
+                }
+            }
+            if (exists == true)
             {
                 bool leftovers = false;
                 T[] tempArray = new T[size - 1];
@@ -88,6 +93,46 @@ namespace CustomList
                 size--;
                 items = tempArray;
             }
+        }
+        public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> newCustomList = new CustomList<T>();
+            for (int i = 0; i < listOne.items.Length; i++)
+            {
+                newCustomList.Add(listOne.items[i]);
+            }
+            for (int i = 0; i < listTwo.items.Length; i++)
+            {
+                newCustomList.Add(listTwo.items[i]);
+            }
+            return newCustomList;
+        }
+        public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            for (int i = 0; i < listTwo.items.Length; i++)
+            {
+                listOne.Remove(listTwo.items[i]);
+            }
+            return listOne;
+        }
+        public CustomList<T> Zip(CustomList<T> listOne)
+        {
+            CustomList<T> newCustomList = new CustomList<T>();
+            CustomList<T> tempList = new CustomList<T>();
+            for(int i = 0; i < size; i++)
+            {
+                tempList.Add(items[i]);
+            }
+            for(int i = size; i < 0 ; i--)
+            {
+                Remove(items[i]);
+            }
+            for (int i = 0; i < size; i++)
+            {
+                newCustomList.Add(tempList.items[i]);
+                newCustomList.Add(listOne.items[i]);
+            }
+            return newCustomList;
         }
     }
 }
