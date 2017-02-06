@@ -26,7 +26,7 @@ namespace TestCustomList
             int input = 5;
             //Act
             list.Add(input);
-            int result = list.items[0];
+            int result = list[0];
             //Assert
             Assert.AreEqual(input, result);
         }
@@ -35,13 +35,10 @@ namespace TestCustomList
         {
             //Arrange
             CustomList<string> list = new CustomList<string>();
-            string inputOne = "blue";
-            string inputTwo = "red";
-            string inputThree = "yellow";
             //Act
-            list.Add(inputOne);
-            list.Add(inputTwo);
-            list.Add(inputThree);
+            list.Add("blue");
+            list.Add("red");
+            list.Add("yellow");
             int result = list.Count;
             //Assert
             Assert.AreEqual(3, result);
@@ -51,28 +48,24 @@ namespace TestCustomList
         {
             //Arrange
             CustomList<string> list = new CustomList<string>();
-            string inputOne = "blue";
-            string inputTwo = "red";
-            string inputThree = "yellow";
             //Act
-            list.Add(inputOne);
-            list.Add(inputTwo);
-            list.Add(inputThree);
+            list.Add("blue");
+            list.Add("red");
+            list.Add("yellow");
             string result = list.items[1];
             //Assert
-            Assert.AreEqual(inputTwo, result);
+            Assert.AreEqual("red", result);
         }
         [TestMethod]
         public void Test_Add_NegativeIntagerToFilledList()
         {
             //Arrange
             CustomList<int> list = new CustomList<int>(3) { 5, -4, 3 };
-            int input = -7;
             //Act
-            list.Add(input);
+            list.Add(-7);
             int result = list.items[3];
             //Assert
-            Assert.AreEqual(input, result);
+            Assert.AreEqual(-7, result);
         }
         [TestMethod]
         public void Test_Remove_IntOfListSizeThree_Length()
@@ -92,7 +85,7 @@ namespace TestCustomList
             //Act
             list.Remove("red");
             //Assert
-            Assert.AreEqual(list.items[1], "yellow");
+            Assert.AreEqual(list[1], "yellow");
         }
         [TestMethod]
         public void Test_Remove_StringNoExist()
@@ -102,7 +95,7 @@ namespace TestCustomList
             //Act
             list.Remove("black");
             //Assert
-            Assert.AreEqual(list.items[3], "green");
+            Assert.AreEqual(list[3], "green");
         }
         [TestMethod]
         public void Test_MakeIterable()
@@ -252,5 +245,16 @@ namespace TestCustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
+        //[TestMethod]
+        //public void Test_Sort()
+        //{
+        //    //Arrange
+        //    CustomList<int> numbers = new CustomList<int>(5) { 3, 1, 2, 4, 0 };
+        //    string expected = "0, 1, 2, 3, 4";
+        //    //Act
+        //    string result = numbers.Sort().ToString();
+        //    //Assert
+        //    Assert.AreEqual(expected, result);
+        //}
     }
 }

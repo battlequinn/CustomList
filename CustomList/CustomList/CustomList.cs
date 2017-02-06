@@ -19,13 +19,26 @@ namespace CustomList
         }
         public CustomList(int size)
         {
-            if (size < 0)
+        }
+        public T this[int number]
+        {
+            get
             {
-                throw new System.ArgumentOutOfRangeException("Cannot have a negative list capacity.");
+                if (number >= 0 && number < size)
+                {
+                    return items[number];
+                }
+                else
+                {
+                    throw new Exception("Index Out Of Range");
+                }
             }
-            else
+            set
             {
-                size = items.Length;
+                if (number >= 0 && number < size)
+                {
+                    items[number] = value;
+                }
             }
         }
         public IEnumerator GetEnumerator()
@@ -35,6 +48,16 @@ namespace CustomList
                 yield return items[i];
             }
         }
+        //public interface IEqualityComparer<in T>(bool Equals(T x, T y); bool GetHashCode(T x))
+
+        //public IComparer Equals(T x, T y)
+        //{
+
+        //}
+        //public IComparer GetHashCode(T x)
+        //{
+
+        //}
         public override string ToString()
         {
             string convertedItem = "";
@@ -118,21 +141,27 @@ namespace CustomList
         public CustomList<T> Zip(CustomList<T> listOne)
         {
             CustomList<T> newCustomList = new CustomList<T>();
-            CustomList<T> tempList = new CustomList<T>();
-            for(int i = 0; i < size; i++)
-            {
-                tempList.Add(items[i]);
-            }
-            for(int i = size; i < 0 ; i--)
-            {
-                Remove(items[i]);
-            }
             for (int i = 0; i < size; i++)
             {
-                newCustomList.Add(tempList.items[i]);
+                newCustomList.Add(items[i]);
                 newCustomList.Add(listOne.items[i]);
             }
             return newCustomList;
         }
+        //public CustomList<T> Sort()
+        //{
+        //    CustomList<T> newCustomList = new CustomList<T>();
+        //    if (newCustomList.GetType() == typeof(int) || newCustomList.GetType() == typeof(double) || newCustomList.GetType() == typeof(float) || newCustomList.GetType() == typeof(long))
+        //    {
+        //        for (int i = 0; i < size; i++)
+        //        {
+        //            T item = items[i];
+        //            for (int x = 0; x < size; x++)
+        //            {
+        //                if(EqualityComparer<T>.Default.Equals(items[i], item)
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
