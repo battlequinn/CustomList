@@ -245,16 +245,38 @@ namespace TestCustomList
             //Assert
             Assert.AreEqual(expected, result);
         }
-        //[TestMethod]
-        //public void Test_Sort()
-        //{
-        //    //Arrange
-        //    CustomList<int> numbers = new CustomList<int>(5) { 3, 1, 2, 4, 0 };
-        //    string expected = "0, 1, 2, 3, 4";
-        //    //Act
-        //    string result = numbers.Sort().ToString();
-        //    //Assert
-        //    Assert.AreEqual(expected, result);
-        //}
+        [TestMethod]
+        public void Test_Sort_Int()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int>(5) { 3, 1, 2, 4, 0 };
+            string expected = "0, 1, 2, 3, 4";
+            //Act
+            string result = numbers.Sort().ToString();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void Test_Sort_Double()
+        {
+            //Arrange
+            CustomList<double> numbers = new CustomList<double>(5) { 3.0, 1.3, 2.5, 4.7, 0.2 };
+            string expected = "0.2, 1.3, 2.5, 3, 4.7";
+            //Act
+            string result = numbers.Sort().ToString();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void Test_Sort_String()
+        {
+            //Arrange
+            CustomList<string> words = new CustomList<String>(5) { "red", "yellow", "green", "blue" };
+            string expected = "blue, green, red, yellow";
+            //Act
+            string result = words.Sort().ToString();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
     }
 }

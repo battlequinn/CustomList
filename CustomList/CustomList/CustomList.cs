@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T> : IEnumerable
+    public class CustomList<T> : IEnumerable where T : IComparable
     {
         public T[] items = new T[0];
         private int size = 0;
@@ -48,16 +48,6 @@ namespace CustomList
                 yield return items[i];
             }
         }
-        //public interface IEqualityComparer<in T>(bool Equals(T x, T y); bool GetHashCode(T x))
-
-        //public IComparer Equals(T x, T y)
-        //{
-
-        //}
-        //public IComparer GetHashCode(T x)
-        //{
-
-        //}
         public override string ToString()
         {
             string convertedItem = "";
@@ -148,20 +138,31 @@ namespace CustomList
             }
             return newCustomList;
         }
-        //public CustomList<T> Sort()
-        //{
-        //    CustomList<T> newCustomList = new CustomList<T>();
-        //    if (newCustomList.GetType() == typeof(int) || newCustomList.GetType() == typeof(double) || newCustomList.GetType() == typeof(float) || newCustomList.GetType() == typeof(long))
-        //    {
-        //        for (int i = 0; i < size; i++)
-        //        {
-        //            T item = items[i];
-        //            for (int x = 0; x < size; x++)
-        //            {
-        //                if(EqualityComparer<T>.Default.Equals(items[i], item)
-        //            }
-        //        }
-        //    }
-        //}
+        public CustomList<T> Sort()
+        {
+            CustomList<T> newCustomList = new CustomList<T>();
+            int i, j;
+            for (i = 1; i < size; i++)
+            {
+                T item = items[i];
+                int ins = 0;
+                for (j = i - 1; j >= 0 && ins != 1;)
+                {
+                    int x = item.CompareTo(items[j]);
+                    if (x < 0)
+                    {
+                        items[j + 1] = items[j];
+                        j--;
+                        items[j + 1] = item;
+                    }
+                    else ins = 1;
+                }
+            }
+            for (int x = 0; x < size; x++)
+            {
+                newCustomList.Add(items[x]);
+            }
+            return newCustomList;
+        }
     }
 }
